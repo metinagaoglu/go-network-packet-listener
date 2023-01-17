@@ -1,29 +1,29 @@
 package main
 
-import(
-	"github.com/google/gopacket/pcap"
+import (
 	"github.com/google/gopacket"
+	"github.com/google/gopacket/pcap"
 
 	"github.com/metinagaoglu/go-network-packet-listener/network"
 
 	"github.com/fatih/color"
 
 	"context"
-);
+)
 
 func main() {
 
 	ctx := context.Background()
 
 	//TODO: interface selection will be added
-	handle, err := pcap.OpenLive("eth0", 1600, true, pcap.BlockForever);
+	handle, err := pcap.OpenLive("eth0", 1600, true, pcap.BlockForever)
 
-	if(err != nil) {
+	if err != nil {
 		panic(err)
 	}
 
-	//TODO: Make dynamic this filter
-	err = handle.SetBPFFilter("tcp");
+	//TODO: Make dynamic this filter - dst
+	err = handle.SetBPFFilter("tcp port 8080")
 	if err != nil {
 		panic(err)
 	}
@@ -34,8 +34,7 @@ func main() {
 	for packet := range packetSource.Packets() {
 		//fmt.Printf("%T \n", packet)
 		//fmt.Println(packet);
-		network.HandlePacket(ctx, packet);
-	}	  
+		network.HandlePacket(ctx, packet)
+	}
+
 }
-
-
