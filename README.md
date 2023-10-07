@@ -1,4 +1,4 @@
-### Simple Network Sniffer - experimental
+### Simple Network Sniffer - (experimental)
 
 This project is a simple network sniffer implemented in Golang. It captures packets from a specified network interface and streams them to a Kafka topic. The packets can then be consumed and processed in real-time.
 Prerequisites
@@ -7,6 +7,16 @@ Prerequisites
     gopacket library
     sarama library for Kafka
     A running Kafka cluster
+
+
+## Prerequisites
+
+Before you get started, make sure you have the following prerequisites installed on your system:
+
+- Go: You should have Go installed on your machine.
+
+- Apache Kafka: You should have an Apache Kafka cluster up and running.
+
 
 ### Note
 
