@@ -1,10 +1,9 @@
 module github.com/metinagaoglu/go-network-packet-listener
 
-go 1.17
+go 1.21
 
 require (
 	github.com/google/gopacket v1.1.19
-	github.com/segmentio/kafka-go v0.4.32
 )
 
 require (

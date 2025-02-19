@@ -1,0 +1,22 @@
+version: '3'
+services:
+  sniffer:
+    build: 
+      context: .
+      dockerfile: Dockerfile.sniffer
+    network_mode: "host"
+    volumes:
+      - ./logs:/app/logs
+    command: ["/sniffer", "-i", "eth0", "-o", "/app/logs/packets.log"]
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    user: root
+
+  traffic-generator:
+    build:
+      context: .
+      dockerfile: Dockerfile.generator
+    depends_on:
+      - sniffer
+    command: ["/traffic-generator", "-host", "sniffer", "-interval", "2s"] 
